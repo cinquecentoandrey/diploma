@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: eureka-server
+
+logging:
+  file:
+    name: /var/log/${spring.application.name}}/application.log
+  logback:
+    rollingpolicy:
+      max-history: 21
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8080/vsh-eureka-server/eureka
+
