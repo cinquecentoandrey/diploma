@@ -1,6 +1,6 @@
-package com.sems.filestorageservice.model.dto;
+package com.sems.filestoragestarter.dto;
 
-import com.sems.filestorageservice.enums.FileDeleteType;
+import com.sems.filestoragestarter.enums.FileDeleteType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

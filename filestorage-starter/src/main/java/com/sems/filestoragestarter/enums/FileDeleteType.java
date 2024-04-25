@@ -1,4 +1,4 @@
-package com.sems.filestorageservice.enums;
+package com.sems.filestoragestarter.enums;
 
 public enum FileDeleteType {
 

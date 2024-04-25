@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.sems.filestoragestarter.config.FileStorageAutoConfiguration,\
+  com.sems.filestoragestarter.config.FileStorageFeignClientConfig
