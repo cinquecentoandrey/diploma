@@ -8,7 +8,8 @@ public enum ErrorMessage {
     FILE_SAVING_ERROR(-1, "Ошибка при сохранении файла"),
     FILE_UPLOADING_ERROR(-2, "Ошибка при загрузке файла"),
     FILE_DOWNLOADING_ERROR(-3, "Ошибка при загрузке файла"),
-    ENTITY_NOT_FOUND(-4, "Сущность не найдена");
+    ENTITY_NOT_FOUND(-4, "Сущность не найдена"),
+    NEWS_ALREADY_EXSITS(-5, "Новость с таким именем уже существует");
 
     private int code;
     private String message;

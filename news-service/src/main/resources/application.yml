@@ -1,0 +1,22 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: news-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sems?currentSchema=news_schema
+    username: postgres
+    password: root
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          show_sql: true
+app:
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka-server/eureka

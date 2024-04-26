@@ -1,14 +1,14 @@
-create schema if not exists fs;
-set schema 'fs';
-set search_path to 'fs';
+create schema if not exists fs_schema;
+set schema 'fs_schema';
+set search_path to 'fs_schema';
 
-create sequence if not exists fs.file_id_seq;
-CREATE TABLE IF NOT EXISTS fs.fs_file
+create sequence if not exists fs_schema.file_id_seq;
+CREATE TABLE IF NOT EXISTS fs_schema.fs_file
 (
     id            bigint       not null
         constraint FS_FILE_PK
             primary key
-        default nextval('fs.file_id_seq'),
+        default nextval('fs_schema.file_id_seq'),
     guid          VARCHAR(128) NOT NULL,
     original_name VARCHAR(255) NOT NULL,
     type          VARCHAR(255) NOT NULL,
