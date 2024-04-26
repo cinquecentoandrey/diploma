@@ -1,7 +1,7 @@
 package com.sems.filestorageservice.model.domain;
 
 
-import com.sems.filestorageservice.enums.FileDeleteType;
+import com.sems.filestoragestarter.enums.FileDeleteType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
