@@ -14,9 +14,13 @@ spring:
         hibernate:
           dialect: org.hibernate.dialect.PostgreSQLDialect
           show_sql: true
-app:
 
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8080/eureka-server/eureka
+      defaultZone: http://localhost:8080/eureka
+  instance:
+    status-page-url-path: /actuator/health
+    prefer-ip-address: true

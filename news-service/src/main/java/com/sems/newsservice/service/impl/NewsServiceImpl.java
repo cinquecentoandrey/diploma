@@ -14,8 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +28,7 @@ public class NewsServiceImpl implements NewsService {
 
     // todo custom sort + specification\
     @Override
+    @Transactional(readOnly = true)
     public Page<NewsDto> getPage(int limit, int offset) {
         return new PageImpl<>(
                 newsRepository.findAll(PageRequest.of(offset, limit))
@@ -37,18 +39,20 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    @Transactional
     public NewsDto save(NewsCreateDto newsDto) {
         existsByHeader(newsDto.getHeader());
 
         News news = newsMapper.createToDomain(newsDto);
-        news.setCreatedBy(SecurityContextHolder.getContext().getAuthentication().getName());
-        news.setUpdateBy(SecurityContextHolder.getContext().getAuthentication().getName());
+       // news.setCreatedBy(SecurityContextHolder.getContext().getAuthentication().getName());
+       // news.setUpdateBy(SecurityContextHolder.getContext().getAuthentication().getName());
 
         return newsMapper.domainToDto(newsRepository.save(news));
     }
 
 
     @Override
+    @Transactional
     public NewsDto updateById(Long id, NewsUpdateDto newsDto) {
         existsByHeader(newsDto.getHeader());
 
@@ -61,6 +65,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         newsRepository.deleteById(id);
     }

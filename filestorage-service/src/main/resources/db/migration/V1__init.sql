@@ -19,5 +19,5 @@ CREATE TABLE IF NOT EXISTS fs_schema.fs_file
     is_deleted    BOOLEAN,
     deleted_by    VARCHAR(256),
     deleted_date  TIMESTAMP,
-    deleted_type  VARCHAR(64)
+    delete_type  VARCHAR(64)
 );

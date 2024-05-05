@@ -12,10 +12,19 @@ logging:
     rollingpolicy:
       max-history: 21
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:8080/eureka-server/eureka
+      defaultZone: http://localhost:8080/eureka
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
 

@@ -3,6 +3,8 @@ package com.sems.newsservice.controller;
 import com.sems.newsservice.dto.NewsCreateDto;
 import com.sems.newsservice.dto.NewsDto;
 import com.sems.newsservice.dto.NewsUpdateDto;
+import com.sems.newsservice.dto.TagDto;
+import com.sems.newsservice.enums.NewsTag;
 import com.sems.newsservice.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/news")
@@ -53,4 +57,12 @@ public class NewsController {
         newsService.deleteById(id);
     }
 
+    @GetMapping("/tags")
+    public ResponseEntity<TagDto> tags() {
+        return ResponseEntity.ok(
+                TagDto.builder()
+                        .tags(List.of(NewsTag.values()))
+                        .build()
+        );
+    }
 }

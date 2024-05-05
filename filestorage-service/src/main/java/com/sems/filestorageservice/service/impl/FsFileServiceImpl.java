@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -35,6 +36,7 @@ public class FsFileServiceImpl implements FsFileService {
     private final FsFileRepository fsFileRepository;
     private final FileMapper fileMapper;
     @Override
+    @Transactional
     public FsFileDto saveFile(MultipartFile file, boolean zip) {
         String originalFileName = file.getOriginalFilename();
         String fileType = file.getContentType();
@@ -75,6 +77,7 @@ public class FsFileServiceImpl implements FsFileService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public FsFileDto getInfoByGuid(String guid) {
         return fileMapper.domainToDto(getByGuid(guid));
     }

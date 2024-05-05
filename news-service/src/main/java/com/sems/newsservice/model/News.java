@@ -1,15 +1,7 @@
 package com.sems.newsservice.model;
 
 import com.sems.newsservice.enums.NewsTag;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,7 +32,6 @@ public class News {
     @Column(name = "body")
     private String body;
 
-    @CreatedDate
     @Column(name = "created")
     private LocalDateTime created;
 
@@ -58,4 +49,14 @@ public class News {
     @Column(name = "tag")
     private NewsTag tag;
 
+    @PrePersist
+    public void prePersist() {
+        this.created = LocalDateTime.now();
+        this.updated = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updated = LocalDateTime.now();
+    }
 }

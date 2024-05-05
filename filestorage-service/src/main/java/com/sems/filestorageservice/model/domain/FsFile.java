@@ -26,11 +26,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "archive_package")
+@Table(name = "fs_file")
 public class FsFile {
 
     @Id
-    @SequenceGenerator(name = "fsFileIdSeq", sequenceName = "fs_file_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "fsFileIdSeq", sequenceName = "file_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fsFileIdSeq")
     private Long id;
 

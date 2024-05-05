@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.lang.reflect.Executable;
+
 @RestController
 @RequestMapping("/api/storage")
 @RequiredArgsConstructor
@@ -27,10 +29,16 @@ public class FsFileController {
         return ResponseEntity.ok(fsFileService.getInfoByGuid(uuid));
     }
 
-    @PostMapping(value = "/upload", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/upload", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FsFileDto> upload(@RequestPart("file") MultipartFile file,
-                                     @RequestPart(value = "zip") boolean zip) {
-        return ResponseEntity.ok(fsFileService.saveFile(file, zip));
+                                     @RequestParam(value = "zip", required = false) boolean zip) {
+        try {
+            return ResponseEntity.ok(fsFileService.saveFile(file, zip));
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+
     }
 
     @GetMapping(value = "/storage/download")
